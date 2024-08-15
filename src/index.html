@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe - Minimax Algorithm</title>
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="game-wrapper">
+            <div class="title">
+                <h2>TicTacToe</h2>
+                <h3>Playground</h3>
+            </div>
+            <div class="game">
+                <table id="board">
+                    <tr>
+                        <td onclick="change_place(this, 0, 0)"><span></span></td>
+                        <td onclick="change_place(this, 0, 1)"><span></span></td>
+                        <td onclick="change_place(this, 0, 2)"><span></span></td>
+                    </tr>
+                    <tr>
+                        <td onclick="change_place(this, 1, 0)"><span></span></td>
+                        <td onclick="change_place(this, 1, 1)"><span></span></td>
+                        <td onclick="change_place(this, 1, 2)"><span></span></td>
+                    </tr>
+                    <tr>
+                        <td onclick="change_place(this, 2, 0)"><span></span></td>
+                        <td onclick="change_place(this, 2, 1)"><span></span></td>
+                        <td onclick="change_place(this, 2, 2)"><span></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="buttons">
+                <button onclick="show_all_moves()" class="pushable">
+                    <span class="front">
+                        Show All Moves
+                    </span>
+                </button>
+                <button class="pushable btn-blue">
+                    <span onclick="best_move()" class="front">
+                        Best Move
+                    </span>
+                </button>
+            </div>
+            <div class="best-move hidden">Best move is <span class="move">(0, 0)</span></div>
+        </div>
+        <canvas id="minimax-draw"></canvas>
+    </div>
+
+    <script type="module" src="./core/main.js"></script>
+    <script src="./core/playground_board.js"></script>
+
+</body>
+
+</html>
