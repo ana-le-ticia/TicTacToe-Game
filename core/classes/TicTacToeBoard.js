@@ -187,7 +187,7 @@ export class TicTacToeBoard {
         let score = this.calculate_points();
         if (score === 9) return score;
         if (score === -9) return score;
-        if (this.draw()) 0;
+        if (this.draw()) return score;
 
         if (isMaximizing) {
             let best = -Infinity;
@@ -195,7 +195,7 @@ export class TicTacToeBoard {
             for (let i = 0; i < this.size.x; i++) {
                 for (let j = 0; j < this.size.y; j++) {
                     if (this.get_place(i, j) === '') {
-                        this.set_place(i, j, this.current_turn == '+' ? 'x':'o');
+                        this.set_place(i, j, 'x');
                         best = Math.max(best, this.minimax(depth + 1, false));
                         this.set_place(i, j, '');
                     }
@@ -208,7 +208,7 @@ export class TicTacToeBoard {
             for (let i = 0; i < this.size.x; i++) {
                 for (let j = 0; j < this.size.y; j++) {
                     if (this.get_place(i, j) === '') {
-                        this.set_place(i, j, this.current_turn == '+' ? 'x':'o');
+                        this.set_place(i, j, 'o');
                         best = Math.min(best, this.minimax(depth + 1, true));
                         this.set_place(i, j, '');
                     }
