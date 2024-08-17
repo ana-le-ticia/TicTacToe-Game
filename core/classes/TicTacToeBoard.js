@@ -165,38 +165,39 @@ export class TicTacToeBoard {
     }
 
     find_best_move() {
-        let bestVal = -Infinity;
-        let bestMove;
+        let best_val = -Infinity;
+        let best_move;
         for (let i = 0; i < this.size.x; i++) {
             for (let j = 0; j < this.size.y; j++) {
-                if (this.get_place(i, j) === '') {
+                if (this.get_place(i, j) == '') {
                     this.set_place(i, j, 'x');
-                    let moveVal = this.minimax(0, false);
+                    let move_val = this.minimax(false);
                     this.set_place(i, j, '');
-                    if (moveVal > bestVal) {
-                        bestMove = new Vector2(i, j);
-                        bestVal = moveVal;
+                    if (move_val > best_val) {
+                        best_move = new Vector2(i, j);
+                        best_val = move_val;
                     }
                 }
             }
         }
-        return [bestVal, bestMove];
+        return [best_val, best_move];
     }
 
-    minimax(depth, isMaximizing) {
+    minimax(is_maximizing) {
         let score = this.calculate_points();
+
         if (score === 9) return score;
         if (score === -9) return score;
         if (this.draw()) return score;
 
-        if (isMaximizing) {
+        if (is_maximizing) {
             let best = -Infinity;
 
             for (let i = 0; i < this.size.x; i++) {
                 for (let j = 0; j < this.size.y; j++) {
                     if (this.get_place(i, j) === '') {
                         this.set_place(i, j, 'x');
-                        best = Math.max(best, this.minimax(depth + 1, false));
+                        best = Math.max(best, this.minimax(false));
                         this.set_place(i, j, '');
                     }
                 }
@@ -209,7 +210,7 @@ export class TicTacToeBoard {
                 for (let j = 0; j < this.size.y; j++) {
                     if (this.get_place(i, j) === '') {
                         this.set_place(i, j, 'o');
-                        best = Math.min(best, this.minimax(depth + 1, true));
+                        best = Math.min(best, this.minimax(true));
                         this.set_place(i, j, '');
                     }
                 }
