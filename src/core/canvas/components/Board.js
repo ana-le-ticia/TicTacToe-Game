@@ -211,7 +211,7 @@ export class BoardComponent {
             });
             this.board.sub_boards[i].canvas_component = board_aux;
             line_arrow = LineArrow.pointsTo(this.center_position(), board_aux.top_center_position(), 'bottom', this.grid_size+10, this);
-            line_arrow.arrow_color = this.board.current_turn == '+' ? this.x_color : this.o_color;
+            line_arrow.arrow_color = this.board.current_turn == '-' ? this.x_color : this.o_color;
             line_arrow.context = this.context;
             line_arrow.drawing_context = this.drawing_context;
             this.drawing_context.add(board_aux);
